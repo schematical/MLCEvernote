@@ -16,9 +16,25 @@ class MLCHRTask extends MLCHRObjectBase{
     protected $strFrame = null;
 	protected $intOwnerId = null;
 
-    
+    public static function LoadByUrl($strUrl){
+        $strResponse = self::LoadXML($strUrl);
+        //_dv($strResponse);
+        $xmlResposne = simplexml_load_string((string)$strResponse);
+        $arrReturn = array();
+        $strClassName = self::$strClassName;
+
+        foreach($xmlResposne->task as $intIndex => $xmlTask){
+            $arrReturn[] = new $strClassName($xmlTask);
+        };
+
+        return $arrReturn;
+    }
     public function Materilize($strResponse){
-        $xmlResponse = simplexml_load_string((string)$strResponse);
+        if(is_string($strResponse)){
+            $xmlResponse = simplexml_load_string((string)$strResponse);
+        }else{
+            $xmlResponse = $strResponse;
+        }
         $this->Id = $xmlResponse->{'id'};
         $this->Body = $xmlResponse->{'body'};
         $this->CategoryId = $xmlResponse->{'category-id'};
@@ -46,6 +62,22 @@ class MLCHRTask extends MLCHRObjectBase{
 
         $strReturn .= "</task>";
         return $strReturn;
+    }
+    public function __toArray(){
+        $arrReturn = array();
+
+        if(!is_null($this->intId)){
+            $arrReturn['id'] = $this->intId;
+        }
+        $arrReturn['body'] = (String)$this->strBody;
+        $arrReturn['category-id'] = (String)$this->intCategoryId;
+        $arrReturn['recording-id'] = (String)$this->intRecordingId;
+        $arrReturn['subject-id'] = (String)$this->intSubjectId;
+        $arrReturn['subject-type'] = (String)$this->strSubjectType;
+        $arrReturn['frame'] = (String)$this->strFrame;
+        $arrReturn['owner-id'] = (String)$this->intOwnerId;
+        return $arrReturn;
+
     }
     public function  __get($strName) {
         switch($strName){

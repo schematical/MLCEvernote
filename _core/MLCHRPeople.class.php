@@ -34,7 +34,7 @@ class MLCHRPeople extends MLCHRObjectBase{
     	$strUrl .= urldecode(http_build_query($arrParams));
 		//die($strUrl);
 		$strXml = self::LoadXML($strUrl);
-		
+		//_dv($strXml);
 		$xmlResponse = simplexml_load_string((string)$strXml);
 		$arrReturn = array();
 		foreach($xmlResponse as $strKey => $xmlPerson){
@@ -157,6 +157,7 @@ class MLCHRPeople extends MLCHRObjectBase{
         $objTask->SubjectType = MLCHRTaskSubjectType::Party;
 		$objTask->Frame = $strFrame;
         $objTask->Save();
+        return $objTask;
     }
     public function AttachEmail($strBody, $strTitle = '', $intCategoryId = null){
         //if this object does not have an id then we need to save first to get one
@@ -189,6 +190,8 @@ class MLCHRPeople extends MLCHRObjectBase{
             case('Background'):
                 return $this->strBackground;
             break;
+            case('Emails'):
+                return $this->arrEmails;
             default:
                 return parent::__get($strName);
             break;

@@ -12,6 +12,9 @@ MLCApplicationBase::$arrClassFiles['MLCHRPeople'] = __MLC_HIGHRISE_CORE__ . '/ML
 MLCApplicationBase::$arrClassFiles['MLCHRPeopleData'] = __MLC_HIGHRISE_CORE__ . '/MLCHRPeopleData.class.php';
 MLCApplicationBase::$arrClassFiles['MLCHRTask'] = __MLC_HIGHRISE_CORE__ . '/MLCHRTask.class.php';
 MLCApplicationBase::$arrClassFiles['MLCHREmail'] = __MLC_HIGHRISE_CORE__ . '/MLCHREmail.class.php';
+//OAuth
+MLCApplicationBase::$arrClassFiles['MLCHROAuthDriver'] = __MLC_HIGHRISE_CORE__ . '/MLCHROAuthDriver.class.php';
+
 
 
 require_once(__MLC_HIGHRISE_CORE__ . '/_enum.inc.php');
