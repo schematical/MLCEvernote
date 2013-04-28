@@ -21,7 +21,9 @@ require_once(__MLC_EVERNOTE_CORE__ . '/_lib/lib/Evernote/Client.php');
 
 MLCApplicationBase::$arrClassFiles['MLCEvernoteDriver'] = __MLC_EVERNOTE_CORE_MODEL__ . '/MLCEvernoteDriver.class.php';
 
-MLCApiEvernote
+MLCApplicationBase::$arrClassFiles['MLCApiEvernote'] = __MLC_EVERNOTE_CORE_MODEL__ . '/MLCApiEvernote.class.php';
+
+
 
 
 
